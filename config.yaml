@@ -1,4 +1,4 @@
-save_model: toy-ende/run/model
+save_model: eng-ata/run/model
 save_checkpoint_steps: 1000
 valid_steps: 200
 train_steps: 8000
@@ -41,15 +41,15 @@ dropout: [0.3] # increased from 0.1
 attention_dropout: [0.3] # increased from 0.1
 
 # Data paths
-save_data: toy-ende/run/example
-src_vocab: toy-ende/run/example.vocab.src
-tgt_vocab: toy-ende/run/example.vocab.tgt
+save_data: eng-ata/run/example
+src_vocab: eng-ata/run/example.vocab.src
+tgt_vocab: eng-ata/run/example.vocab.tgt
 
 # Corpus
 data:
   corpus_1:
-    path_src: toy-ende/src-train.txt
-    path_tgt: toy-ende/tgt-train.txt
+    path_src: eng-ata/src-train.txt
+    path_tgt: eng-ata/tgt-train.txt
   valid:
-    path_src: toy-ende/src-val.txt
-    path_tgt: toy-ende/tgt-val.txt
+    path_src: eng-ata/src-val.txt
+    path_tgt: eng-ata/tgt-val.txt
