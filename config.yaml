@@ -1,55 +1,45 @@
-save_model: eng-ata/run/model
-save_checkpoint_steps: 1000
-valid_steps: 200
-train_steps: 8000
-report_every: 50
+# config.yaml
 
-# Batching
-bucket_size: 262144
+save_data: eng-ata/run/data
+src_vocab: eng-ata/run/vocab.src
+tgt_vocab: eng-ata/run/vocab.tgt
+
+src_subword_model: eng-ata/run/spm.model
+tgt_subword_model: eng-ata/run/spm.model
+src_subword_type: sentencepiece
+tgt_subword_type: sentencepiece
+
+data:
+  corpus_1:
+    path_src: eng-ata/src-train.spm.txt
+    path_tgt: eng-ata/tgt-train.spm.txt
+  valid:
+    path_src: eng-ata/src-val.spm.txt
+    path_tgt: eng-ata/tgt-val.spm.txt
+
 world_size: 1
 gpu_ranks: [0]
-num_workers: 4
-batch_type: "tokens"
-batch_size: 8192
-valid_batch_size: 2048
-accum_count: [2]
-accum_steps: [0]
 
-# Optimization
-model_dtype: "fp16"
-optim: "adam"
-learning_rate: 1.5
-warmup_steps: 4000
-decay_method: "noam"
-adam_beta2: 0.998
-max_grad_norm: 0
-label_smoothing: 0.2 # increased from 0.1
-param_init_glorot: true
-normalization: "tokens"
+train_steps: 10000
+valid_steps: 500
+save_checkpoint_steps: 500
+batch_size: 64
 
-# Model
+model_type: transformer
 encoder_type: transformer
 decoder_type: transformer
 position_encoding: true
-enc_layers: 4 # reduced from 6
-dec_layers: 4 # reduced from 6
-heads: 8
-hidden_size: 256 # reduced from 512
-word_vec_size: 256
-transformer_ff: 1024 # reduced from 2048
-dropout: [0.3] # increased from 0.1
-attention_dropout: [0.3] # increased from 0.1
+share_embeddings: true
+optim: adam
+adam_beta2: 0.998
+decay_method: noam
+warmup_steps: 4000
+learning_rate: 2.0
+max_grad_norm: 0.0
+param_init: 0
+param_init_glorot: true
+label_smoothing: 0.1
 
-# Data paths
-save_data: eng-ata/run/example
-src_vocab: eng-ata/run/example.vocab.src
-tgt_vocab: eng-ata/run/example.vocab.tgt
-
-# Corpus
-data:
-  corpus_1:
-    path_src: eng-ata/src-train.txt
-    path_tgt: eng-ata/tgt-train.txt
-  valid:
-    path_src: eng-ata/src-val.txt
-    path_tgt: eng-ata/tgt-val.txt
+log_file: train.log
+tensorboard: true
+tensorboard_log_dir: runs/
