@@ -51,6 +51,7 @@ regex==2024.11.6
 requests==2.32.3
 rich==14.0.0
 sacrebleu==2.5.1
+sentencepiece==0.2.0
 shellingham==1.5.4
 six==1.17.0
 smart-open==7.1.0
