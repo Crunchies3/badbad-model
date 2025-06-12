@@ -1,0 +1,165 @@
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sparse_activations.py:46: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sparse_activations.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sru.py:395: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sru.py:444: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sparse_losses.py:10: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\modules\sparse_losses.py:31: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+[2025-06-12 14:07:24,228 INFO] Missing transforms field for corpus_1 data, set to default: [].
+[2025-06-12 14:07:24,228 WARNING] Corpus corpus_1's weight should be given. We default it to 1 for you.
+[2025-06-12 14:07:24,228 INFO] Missing transforms field for valid data, set to default: [].
+[2025-06-12 14:07:24,229 INFO] Parsed 2 corpora from -data.
+[2025-06-12 14:07:24,229 INFO] Loading checkpoint from eng-ata/run/model_step_15000.pt
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\models\model_saver.py:33: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(ckpt_path, map_location=torch.device("cpu"))
+[2025-06-12 14:07:24,343 INFO] Building model...
+[2025-06-12 14:07:24,367 INFO] Switching model to float32 for amp/apex_amp
+[2025-06-12 14:07:24,367 INFO] Non quantized layer compute is fp16
+[2025-06-12 14:07:24,455 INFO] NMTModel(
+  (encoder): TransformerEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(18944, 256, padding_idx=1)
+        )
+        (pe): PositionalEncoding()
+      )
+      (dropout): Dropout(p=0.3, inplace=False)
+    )
+    (transformer): ModuleList(
+      (0-3): 4 x TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=False)
+          (linear_values): Linear(in_features=256, out_features=256, bias=False)
+          (linear_query): Linear(in_features=256, out_features=256, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.3, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=1024, bias=False)
+          (w_2): Linear(in_features=1024, out_features=256, bias=False)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.3, inplace=False)
+          (dropout_2): Dropout(p=0.3, inplace=False)
+        )
+        (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.3, inplace=False)
+      )
+    )
+    (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+  )
+  (decoder): TransformerDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(18320, 256, padding_idx=1)
+        )
+        (pe): PositionalEncoding()
+      )
+      (dropout): Dropout(p=0.3, inplace=False)
+    )
+    (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+    (transformer_layers): ModuleList(
+      (0-3): 4 x TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=False)
+          (linear_values): Linear(in_features=256, out_features=256, bias=False)
+          (linear_query): Linear(in_features=256, out_features=256, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.3, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=1024, bias=False)
+          (w_2): Linear(in_features=1024, out_features=256, bias=False)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.3, inplace=False)
+          (dropout_2): Dropout(p=0.3, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.3, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=False)
+          (linear_values): Linear(in_features=256, out_features=256, bias=False)
+          (linear_query): Linear(in_features=256, out_features=256, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.3, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (layer_norm_2): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+  )
+  (generator): Linear(in_features=256, out_features=18320, bias=True)
+)
+[2025-06-12 14:07:24,456 INFO] encoder: 8000000
+[2025-06-12 14:07:24,456 INFO] decoder: 13599120
+[2025-06-12 14:07:24,456 INFO] * number of parameters: 21599120
+[2025-06-12 14:07:24,456 INFO] Trainable parameters = {'torch.float32': 21599120, 'torch.float16': 0, 'torch.uint8': 0, 'torch.int8': 0}
+[2025-06-12 14:07:24,456 INFO] Non trainable parameters = {'torch.float32': 0, 'torch.float16': 0, 'torch.uint8': 0, 'torch.int8': 0}
+[2025-06-12 14:07:24,456 INFO]  * src vocab size = 18944
+[2025-06-12 14:07:24,456 INFO]  * tgt vocab size = 18320
+C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\utils\optimizers.py:341: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  optimizer._scaler = GradScaler()
+[2025-06-12 14:07:25,130 INFO] Starting training on GPU: [0]
+[2025-06-12 14:07:25,130 INFO] Start training loop and validate every 500 steps...
+[2025-06-12 14:07:25,130 INFO] Scoring with: None
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 120, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 130, in _main
+    self = reduction.pickle.load(from_parent)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\__init__.py", line 2, in <module>
+    import onmt.inputters
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\inputters\__init__.py", line 8, in <module>
+    from onmt.inputters.text_corpus import ParallelCorpus, ParallelCorpusIterator
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\inputters\text_corpus.py", line 5, in <module>
+    from onmt.transforms import TransformPipe
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\transforms\__init__.py", line 65, in <module>
+    module = importlib.import_module("onmt.transforms." + file_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\onmt\transforms\terminology.py", line 5, in <module>
+    import spacy
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\spacy\__init__.py", line 13, in <module>
+    from . import pipeline  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\spacy\pipeline\__init__.py", line 2, in <module>
+    from .dep_parser import DependencyParser
+  File "spacy/pipeline/dep_parser.pyx", line 41, in init spacy.pipeline.dep_parser
+    DEFAULT_PARSER_MODEL = Config().from_str(default_model_config)["model"]
+    
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\confection\__init__.py", line 419, in from_str
+    self.interpret_config(config)
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\confection\__init__.py", line 274, in interpret_config
+    config_v = config.get(section, key)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\configparser.py", line 814, in get
+    return self._interpolation.before_get(self, section, option, value,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\confection\__init__.py", line 85, in before_get
+    self.interpolate(parser, option, L, value, section, defaults, 1)
+  File "C:\Users\Cyril Charles\Documents\Thesis\badbad-model\venv\Lib\site-packages\confection\__init__.py", line 95, in interpolate
+    rawval = parser.get(section, option, raw=True, fallback=rest)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\configparser.py", line 796, in get
+    d = self._unify_values(section, vars)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\configparser.py", line 1175, in _unify_values
+    return _ChainMap(vardict, sectiondict, self._defaults)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Cyril Charles\AppData\Local\Programs\Python\Python311\Lib\collections\__init__.py", line 988, in __init__
+    def __init__(self, *maps):
+
+KeyboardInterrupt
