@@ -1,33 +1,34 @@
+# Saving paths
 save_model: eng-ata/run/model
 save_checkpoint_steps: 1000
 valid_steps: 500
 train_steps: 15000
 report_every: 50
 
-# Batching
-bucket_size: 262144
+# Hardware and batching
 world_size: 1
 gpu_ranks: [0]
+bucket_size: 262144
 num_workers: 4
 batch_type: "tokens"
-batch_size: 4096 # reduced from 8192
-valid_batch_size: 1024 # reduced proportionally
-accum_count: [4] # larger accumulation to maintain update stability
+batch_size: 4096
+valid_batch_size: 1024
+accum_count: [4]
 accum_steps: [0]
 
 # Optimization
 model_dtype: "fp16"
 optim: "adam"
-learning_rate: 1.0 # reduced from 1.5
+learning_rate: 1.0
 warmup_steps: 4000
 decay_method: "noam"
 adam_beta2: 0.998
 max_grad_norm: 0
-label_smoothing: 0.1 # lowered from 0.2 to avoid underconfidence
+label_smoothing: 0.1
 param_init_glorot: true
 normalization: "tokens"
 
-# Model
+# Model architecture
 encoder_type: transformer
 decoder_type: transformer
 position_encoding: true
@@ -40,16 +41,16 @@ transformer_ff: 1024
 dropout: [0.3]
 attention_dropout: [0.3]
 
-# Data paths
-save_data: eng-ata/run/example
+# Data
+save_data: eng-ata/run/example # only needed for vocab
+
 src_vocab: eng-ata/run/example.vocab.src
 tgt_vocab: eng-ata/run/example.vocab.tgt
 
-# Corpus
 data:
   corpus_1:
-    path_src: eng-ata/src-train.txt
-    path_tgt: eng-ata/tgt-train.txt
+    path_src: eng-ata/src-train.spm.txt
+    path_tgt: eng-ata/tgt-train.spm.txt
   valid:
-    path_src: eng-ata/src-val.txt
-    path_tgt: eng-ata/tgt-val.txt
+    path_src: eng-ata/src-val.spm.txt
+    path_tgt: eng-ata/tgt-val.spm.txt

@@ -28,19 +28,20 @@ test_data = data[val_end:]
 
 # Oversample training data by a factor of 5
 train_data_oversampled = train_data * 5
-random.shuffle(train_data_oversampled)  # Optional: shuffle after oversampling
+random.shuffle(train_data_oversampled)
 
-# Clean text: lowercase and remove non-alphabetic characters (keep spaces)
+# Clean text: lowercase and retain letters, spaces, and basic punctuation
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove anything not a letter or space
-    text = re.sub(r'\s+', ' ', text).strip()  # Normalize whitespace
+    # Keep letters, spaces, and these basic punctuation marks: . , ? ! : ; ' " -
+    text = re.sub(r"[^a-zA-Z\s.,?!:;-]", '', text)
+    text = re.sub(r'\s+', ' ', text).strip()
     return text
 
 # Write function
 def write_split(data, split_name):
     with open(f'src-{split_name}.txt', 'w', encoding='utf-8') as f_src, \
-         open(f'tgt-{split_name}.txt', 'w', encoding='utf-8') as f_tgt:
+        open(f'tgt-{split_name}.txt', 'w', encoding='utf-8') as f_tgt:
         for src, tgt in data:
             f_src.write(clean_text(src) + '\n')
             f_tgt.write(clean_text(tgt) + '\n')
