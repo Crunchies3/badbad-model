@@ -19,7 +19,7 @@ accum_steps: [0]
 # Optimization
 model_dtype: "fp16"
 optim: "adam"
-learning_rate: 1.0
+learning_rate: 7.0 # You can try 0.7 if unstable
 warmup_steps: 4000
 decay_method: "noam"
 adam_beta2: 0.998
@@ -32,17 +32,18 @@ normalization: "tokens"
 encoder_type: transformer
 decoder_type: transformer
 position_encoding: true
-enc_layers: 4
-dec_layers: 4
+enc_layers: 3
+dec_layers: 3
 heads: 8
-hidden_size: 256
-word_vec_size: 256
-transformer_ff: 1024
-dropout: [0.3]
-attention_dropout: [0.3]
+hidden_size: 192
+word_vec_size: 192
+transformer_ff: 768
 
-# Data
-save_data: eng-ata/run/example # only needed for vocab
+dropout: [0.4]
+attention_dropout: [0.4]
+
+# Data (with SentencePiece tokenized files)
+save_data: eng-ata/run/example
 
 src_vocab: eng-ata/run/example.vocab.src
 tgt_vocab: eng-ata/run/example.vocab.tgt
